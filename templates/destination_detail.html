@@ -1,0 +1,26 @@
+{% extends 'index2.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">{{ destination.place_name }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Details</h5>
+            <p><strong>Weather:</strong> {{ destination.weather }}</p>
+            <p><strong>Location:</strong> {{ destination.state }}, {{ destination.district }}</p>
+            <p><strong>Description:</strong> {{ destination.description }}</p>
+            <a href="{{ destination.google_map_link }}" class="btn btn-primary">View on Map</a>
+            <img src="{{ destination.image.url }}" alt="{{ destination.place_name }}" class="img-fluid mt-3">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'destination-update' destination.id %}" class="btn btn-warning">Update</a>
+        <form method="post" action="{% url 'destination-delete' destination.id %}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this destination?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{% url 'destination-list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

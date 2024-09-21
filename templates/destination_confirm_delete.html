@@ -1,0 +1,30 @@
+{% extends 'index2.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="text-danger text-center mb-4">Confirm Deletion</h1>
+
+                <!-- Destination details -->
+                <div class="text-center mb-3">
+                    <h3 class="font-weight-bold">{{ destination.place_name }}</h3>
+                    <p class="text-muted">
+                        <strong>Location:</strong> {{ destination.state }}, {{ destination.district }}<br>
+                        <strong>Description:</strong> {{ destination.description }}
+                    </p>
+                </div>
+
+                <!-- Confirmation buttons -->
+                <div class="text-center">
+                    <form method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg mr-2">Confirm Delete</button>
+                    </form>
+                    <a href="{% url 'destination-list' %}" class="btn btn-secondary btn-lg">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

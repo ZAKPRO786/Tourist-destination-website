@@ -1,0 +1,31 @@
+{% extends 'index2.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">create destination</h2>
+
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <!-- Display form fields with Bootstrap styling -->
+        <div class="row mb-3">
+            {{ form.non_field_errors }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Rendering the form fields with Bootstrap styling -->
+                {{ form.as_p }}
+            </div>
+        </div>
+
+        <!-- Submit button with primary style -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
